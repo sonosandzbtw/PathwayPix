@@ -38,7 +38,7 @@ st.markdown("""
 
         body {
             background-color: #1F618D;
-            color: #E3E9F0;
+            color: #070099;
         }
     </style>
 """, unsafe_allow_html=True)
