@@ -162,9 +162,42 @@ if pathway == "Select...":
 # === PATHWAY LOGIC ===
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
-    try:
-        img = Image.open("assets/glycolysis.png")
-        st.image(img, use_container_width=True)
+   from PIL import Image
+import base64
+from io import BytesIO
+import streamlit as st
+
+# === Zoomable Image CSS + Logic ===
+def display_zoomable_image(image_path):
+    img = Image.open(image_path)
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    img_base64 = base64.b64encode(buffered.getvalue()).decode()
+
+    zoom_html = f"""
+    <style>
+    .zoom-img {{
+        width: 100%;
+        max-width: 800px;
+        transition: transform 0.2s ease-in-out;
+        cursor: zoom-in;
+    }}
+
+    .zoom-img:hover {{
+        transform: scale(1.7);
+        z-index: 1000;
+    }}
+    </style>
+    <div style="text-align:center;">
+        <img class="zoom-img" src="data:image/png;base64,{img_base64}" />
+    </div>
+    """
+    st.markdown(zoom_html, unsafe_allow_html=True)
+
+# === Call this inside your glycolysis block:
+if pathway == "1️⃣ Glycolysis":
+    st.title("Glycolysis")
+    display_zoomable_image("assets/glycolysis.png")
     except FileNotFoundError:
         st.warning("⚠️ Please add 'glycolysis.png' to the 'assets/' folder.")
 
