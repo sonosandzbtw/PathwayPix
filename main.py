@@ -64,17 +64,14 @@ st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 Ab
 if pathway == "Select...":
     st.title("🧬 Welcome to PathwayPix")
     st.markdown("""
-    **Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list — but to me, it’s never felt like that.**  
-    As someone deeply obsessed with organic chemistry, I realized something simple:  
-    **Biochemistry is just Orgo in motion** — carbon doing what carbon does best: reacting with purpose.
+    **Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list — but to me, it’s never felt like that. As someone who’s deeply obsessed with organic chemistry, I realized that biochemistry is just Orgo in motion — carbon doing what carbon does best: reacting with purpose.
+Once I started looking at pathways through that lens, everything clicked. There’s no need to memorize when you understand the logic behind each molecular move.
+But textbooks rarely explain it that way. They show you what happens, but not why. The mechanisms, the regulation, the energy logic — it’s all flattened into diagrams and labels.
 
-    Once I started looking at pathways through that lens, everything clicked.  
-    There’s no need to memorize when you understand the logic behind each molecular move.
-
-    But textbooks rarely explain it that way.  
-    They show you **what** happens, but not **why** — the mechanisms, the regulation, the energy logic — it's all flattened into diagrams and labels.
-
-    ---
+That’s why I’m building this webapp: To make biochemistry interactive, visual, and actually FUN! For everyone. I want students to see what’s happening, explore how hormones like insulin change metabolic flow, and even zoom in to understand the organic transformations behind each step.
+If you’ve ever felt like biochem was just a wall of facts — I built this to show you that it’s actually a beautiful, logical dance of electrons.
+Let carbon do its thing. You’ll see.
+    
 
     ### Why I Built This Webapp
 
