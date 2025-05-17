@@ -94,15 +94,111 @@ def display_zoomable_image(image_path):
     except FileNotFoundError:
         st.warning(f"⚠️ Please add '{image_path}' to the 'assets/' folder.")
 
-# === PAGE CONTENT ===
+# === MAIN PAGE ===
 if pathway == "Select...":
     st.markdown("<h1>🧬 Welcome to PathwayPix</h1>", unsafe_allow_html=True)
-    st.markdown("""[... your welcome message content remains unchanged ...]""", unsafe_allow_html=True)
 
+    st.markdown("""
+    <p style='font-size:17px; color:#EAEAEA;'>
+    <strong>Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list.</strong><br>
+    But to me, it never felt like that.
+    </p>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    As someone deeply obsessed with organic chemistry, I realized that biochemistry is just <strong>Orgo in motion</strong> — carbon doing what carbon does best: reacting with purpose. 
+    Once I started looking at pathways through that lens, everything clicked. There’s no need to memorize when you understand the logic behind each molecular move.
+    </p>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    Textbooks rarely explain it this way. They show you what happens, but not why. The mechanisms, the regulation, the energy logic — it’s all flattened into diagrams and labels.
+    </p>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    That’s why I built PathwayPix: to make biochemistry interactive, visual, and actually fun.
+    I want students to explore what’s happening, understand how hormones like insulin change the flow of metabolism, and zoom in to see the organic transformations behind each reaction.
+    </p>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    If you’ve ever felt like biochemistry was just a wall of facts, I built this to show you that it’s actually a beautiful, logical dance of electrons. 
+    Let carbon do its thing. You’ll see.
+    </p>
+
+    <hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
+
+    <h2 style='color:#FFFFFF;'>💡 Why I Built This Webapp</h2>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    PathwayPix isn't about memorizing pathways. It's about understanding them: how they work, why they change, and where control happens.
+    </p>
+
+    <ul style='font-size:17px; color:#EAEAEA;'>
+        <li><strong>See</strong> what’s happening in each step</li>
+        <li><strong>Understand</strong> how small molecular shifts serve strategic purposes</li>
+        <li><strong>Follow</strong> the biochemical logic, not just the names</li>
+    </ul>
+
+    <p style='font-size:17px; color:#EAEAEA;'>
+    When you grasp the “why,” the “what” becomes obvious.
+    </p>
+
+    <hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
+
+    <h2 style='color:#FFFFFF;'>🧠 Design Philosophy</h2>
+
+    <h3 style='color:#F5F5F5;'>1. Every isomerization happens for a reason.</h3>
+    <p style='font-size:17px; color:#EAEAEA;'>
+    Molecules don’t randomly shift shapes. Whether it’s a carbonyl repositioning, a ring opening, or a sugar flipping forms — there’s always a strategy. 
+    Each isomerization supports a specific goal:
+    </p>
+
+    <ul style='font-size:17px; color:#EAEAEA;'>
+        <li>Preparing a molecule for cleavage</li>
+        <li>Enabling a redox reaction</li>
+        <li>Creating symmetry for branching</li>
+    </ul>
+
+    <h3 style='color:#F5F5F5;'>2. Regulatory steps aren’t trivia — they’re turning points.</h3>
+    <p style='font-size:17px; color:#EAEAEA;'>
+    Control points in metabolism aren’t just facts to memorize. They’re where the story shifts.
+    </p>
+
+    <ul style='font-size:17px; color:#EAEAEA;'>
+        <li>Why is regulation here?</li>
+        <li>What changes before and after this step?</li>
+        <li>What is the cell trying to achieve?</li>
+    </ul>
+    """, unsafe_allow_html=True)
+
+# === GLYCOLYSIS PAGE ===
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
-    display_zoomable_image("assets/glycolysis.png")
 
+    col1, col2 = st.columns([2, 2])
+
+    with col1:
+        display_zoomable_image("assets/glycolysis.png")
+
+    with col2:
+        st.markdown("### 🔍 Explore Steps")
+        step = st.radio("Select Step", [f"Step {i}" for i in range(1, 11)], horizontal=True)
+        st.write(f"Details for {step} will appear here.")
+        # You can customize this part further for each step logic
+        if step == "Step 3":
+            st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
+
+        st.markdown("### 🧪 Regulation")
+        factors = st.multiselect("Select Conditions", ["Insulin ↑", "Glucagon ↑", "ATP ↑", "AMP ↑", "Citrate ↑", "ADP ↑"])
+        if factors:
+            st.markdown("#### 🧠 Logical Impact:")
+            if "Insulin ↑" in factors:
+                st.info("Insulin upregulates PFK-1 and increases glycolytic flux.")
+            if "Glucagon ↑" in factors:
+                st.warning("Glucagon activates FBPase-2 (via cAMP), lowering F2,6BP and inhibiting glycolysis.")
+            if "ATP ↑" in factors:
+                st.error("High ATP inhibits PFK-1 allosterically. Cell energy is sufficient.")
+            # Add more logic as desired
+
+# === PLACEHOLDERS FOR OTHER MODULES ===
 elif pathway == "2️⃣ Phosphate Dehydrogenation":
     st.title("Phosphate Dehydrogenation (Coming Soon)")
     st.info("🚧 Module under construction.")
