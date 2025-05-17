@@ -18,12 +18,12 @@ st.markdown("""
         }
 
         [data-testid="stAppViewContainer"] {
-            background-color: #02003E !important;
+            background-color: #020030 !important;
         }
 
         [data-testid="stAppViewBlockContainer"] {
             padding: 2rem 3rem;
-            background-color: #02003E !important;
+            background-color: #020030 !important;
             color: #E3E9F0;
         }
 
@@ -49,6 +49,7 @@ st.sidebar.markdown("## 🧬 PathwayPix")
 st.sidebar.markdown("#### Pathways")
 
 pathway = st.sidebar.selectbox("Select a Pathway", [
+    "Select...",
     "1️⃣ Glycolysis",
     "2️⃣ Phosphate Dehydrogenation",
     "3️⃣ Krebs Cycle",
@@ -60,10 +61,14 @@ st.sidebar.markdown('<a class="custom-link" href="/How_to_use" target="_self">�
 st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 About Developer</a>', unsafe_allow_html=True)
 
 # === Main content ===
-if "pathway" not in st.session_state:
-    st.session_state.pathway = pathway
+if pathway == "Select...":
+    st.title("Welcome to PathwayPix")
+    st.markdown("""
+    This is your molecular logic visualization tool.
+    Choose a pathway from the left to begin.
+    """)
 
-if pathway == "1️⃣ Glycolysis":
+elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
     try:
         img = Image.open("assets/glycolysis.png")
@@ -83,9 +88,3 @@ elif pathway == "4️⃣ Electron Transport Chain":
     st.title("Electron Transport Chain (Coming Soon)")
     st.info("🚧 Module under construction.")
 
-else:
-    st.title("Welcome to PathwayPix")
-    st.markdown("""
-    This is your molecular logic visualization tool.
-    Choose a pathway from the left to begin.
-    """)
