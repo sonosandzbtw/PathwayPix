@@ -78,21 +78,26 @@ pathway = st.sidebar.selectbox("", [
 ])
 
 # === HELPER FUNCTION ===
-def display_zoomable_image(image_path):
-    try:
-        img = Image.open(image_path)
-        buffered = BytesIO()
-        img.save(buffered, format="PNG")
-        img_base64 = base64.b64encode(buffered.getvalue()).decode()
+def display_interactive_zoom(image_path):
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        img_base64 = base64.b64encode(img_bytes).decode()
 
-        zoom_html = f"""
-        <div style="text-align:center;">
-            <img class="zoom-img" src="data:image/png;base64,{img_base64}" />
+    components.html(f"""
+        <div style="width: 100%; height: 500px; overflow: scroll; border: 1px solid #444;">
+            <img src="data:image/png;base64,{img_base64}" 
+                 style="width: 1000px; height: auto; transform-origin: top left;" 
+                 id="zoom-img" />
         </div>
-        """
-        st.markdown(zoom_html, unsafe_allow_html=True)
-    except FileNotFoundError:
-        st.warning(f"⚠️ Please add '{image_path}' to the 'assets/' folder.")
+        <script>
+        let img = document.getElementById("zoom-img");
+        let scale = 1;
+        img.onclick = function() {{
+            scale = scale === 1 ? 2.5 : 1;
+            img.style.transform = "scale(" + scale + ")";
+        }};
+        </script>
+    """, height=550)
 
 # === MAIN PAGE ===
 if pathway == "Select...":
