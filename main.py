@@ -1,3 +1,33 @@
+import streamlit.components.v1 as components
+from PIL import Image
+from io import BytesIO
+import base64
+
+def display_interactive_zoom(image_path):
+    img = Image.open(image_path)
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    img_base64 = base64.b64encode(buffered.getvalue()).decode()
+
+    components.html(f"""
+        <div style="width: 100%; height: 550px; overflow: auto; border: 1px solid #444; position: relative;">
+            <img src="data:image/png;base64,{img_base64}"
+                 id="zoom-img"
+                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" />
+        </div>
+
+        <script>
+            setTimeout(() => {{
+                const img = document.getElementById("zoom-img");
+                let scale = 1;
+
+                img.addEventListener("click", () => {{
+                    scale = scale === 1 ? 2.5 : 1;
+                    img.style.transform = "scale(" + scale + ")";
+                }});
+            }}, 100);
+        </script>
+    """, height=600)
 import streamlit as st
 from PIL import Image
 import base64
