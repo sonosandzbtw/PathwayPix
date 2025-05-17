@@ -38,7 +38,7 @@ st.markdown("""
 
         /* Main content background color */
         [data-testid="stAppViewContainer"] {
-            background-color: #080179 !important;
+            background-color: #42414F   !important;
         }
 
         [data-testid="stAppViewBlockContainer"] {
