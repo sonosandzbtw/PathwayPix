@@ -36,9 +36,15 @@ st.markdown("""
             color: var(--link-hover-color);
         }
 
-        body {
-            background-color: #1F618D;
-            color: #070099;
+        /* Main content background color */
+        [data-testid="stAppViewContainer"] {
+            background-color: #080179 !important;
+        }
+
+        [data-testid="stAppViewBlockContainer"] {
+            padding: 2rem 3rem;
+            background-color: #080179 !important;
+            color: #E3E9F0;
         }
     </style>
 """, unsafe_allow_html=True)
