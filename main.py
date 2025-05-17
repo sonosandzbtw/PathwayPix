@@ -53,30 +53,25 @@ st.markdown("""
 
 # === HELPER FUNCTION FOR ZOOM ===
 def display_interactive_zoom(image_path):
-    img = Image.open(image_path)
-    buffered = BytesIO()
-    img.save(buffered, format="PNG")
-    img_base64 = base64.b64encode(buffered.getvalue()).decode()
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        img_base64 = base64.b64encode(img_bytes).decode()
 
     components.html(f"""
-        <div id="zoom-container" style="width: 100%; height: 800px; overflow: auto; border: 1px solid #444;">
-            <img id="zoom-img"
-                src="data:image/png;base64,{img_base64}"
-                style="width: 1000px; height: auto; transition: width 0.3s ease;" />
+        <div style="width: 100%; height: 500px; overflow: scroll; border: 1px solid #444;">
+            <img src="data:image/png;base64,{img_base64}" 
+                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" 
+                 id="zoom-img" />
         </div>
-
         <script>
-            setTimeout(() => {{
-                const img = document.getElementById("zoom-img");
-                let zoomed = false;
-
-                img.addEventListener("click", () => {{
-                    zoomed = !zoomed;
-                    img.style.width = zoomed ? "2500px" : "1000px";
-                }});
-            }}, 100);
+        let img = document.getElementById("zoom-img");
+        let scale = 1;
+        img.onclick = function() {{
+            scale = scale === 1 ? 2.5 : 1;
+            img.style.transform = "scale(" + scale + ")";
+        }};
         </script>
-    """, height=850)
+    """, height=550)
 
 # === SIDEBAR ===
 st.sidebar.markdown("<h2 class='custom-link'>🧬 <a href='/' style='text-decoration: none; color: inherit;'>PathwayPix</a></h2>", unsafe_allow_html=True)
@@ -189,4 +184,3 @@ elif pathway == "3️⃣ Krebs Cycle":
 elif pathway == "4️⃣ Electron Transport Chain":
     st.title("Electron Transport Chain (Coming Soon)")
     st.info("🚧 Module under construction.")
-
