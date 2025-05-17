@@ -105,7 +105,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === Sidebar content ===
-st.sidebar.markdown("<h2 style='color:#EAEAEA;'>📌 PathwayPix</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<h2 style='color:#EAEAEA;'>🧬 PathwayPix</h2>", unsafe_allow_html=True)
 
 st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🏠 Home</a>', unsafe_allow_html=True)
 st.sidebar.markdown('<a class="custom-link" href="/How_to_use" target="_self">🛠 How to Use</a>', unsafe_allow_html=True)
