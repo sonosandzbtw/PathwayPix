@@ -91,7 +91,6 @@ pathway = st.sidebar.selectbox("", [
 # === MAIN PAGE ===
 if pathway == "Select...":
     st.markdown("<h1>🧬 Welcome to PathwayPix</h1>", unsafe_allow_html=True)
-
     st.markdown("""
     <p style='font-size:17px; color:#EAEAEA;'>
     <strong>Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list.</strong><br>
@@ -150,46 +149,43 @@ elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
     col1, col2 = st.columns([2, 2])
 
-with col1:
+    with col1:
         display_interactive_zoom("assets/glycolysis.png")
 
-with col2:
-    st.markdown("### 🔍 Explore Steps")
-    step = st.radio("Select Step", [f"Step {i}" for i in range(1, 11)], horizontal=True)
-    st.write(f"Details for {step} will appear here.")
+    with col2:
+        st.markdown("### 🔍 Explore Steps")
+        step = st.radio("Select Step", [f"Step {i}" for i in range(1, 11)], horizontal=True)
+        st.write(f"Details for {step} will appear here.")
+        if step == "Step 3":
+            st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
 
-if step == "Step 3":
-        st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
+        st.markdown("### 🧪 Regulation")
+        regulation_choice = st.radio("Select a Regulatory Condition", [
+            "Insulin ↑", "Insulin ↓", "Glucagon ↑", "Glucagon ↓", "Adrenaline ↑",
+            "AMP > ATP", "ATP > AMP", "Fructose 2,6-bisphosphate ↑", "pH ↑"
+        ])
 
-    # ✅ Correct indentation begins here
-    st.markdown("### 🧪 Regulation")
+        st.markdown("#### 🧠 Logical Impact:")
+        if regulation_choice == "Insulin ↑":
+            st.info("Insulin activates phosphoprotein phosphatase, dephosphorylating PFK-2 → activates kinase domain → ↑ F2,6BP → ↑ PFK-1 → ↑ glycolysis.")
+        elif regulation_choice == "Insulin ↓":
+            st.warning("Low insulin = ↓ kinase activity of PFK-2 → ↓ F2,6BP → ↓ PFK-1 activity → ↓ glycolysis.")
+        elif regulation_choice == "Glucagon ↑":
+            st.error("Glucagon → ↑ cAMP → ↑ PKA → phosphorylates PFK-2 → activates phosphatase domain → ↓ F2,6BP → ↓ PFK-1 → ↓ glycolysis.")
+        elif regulation_choice == "Glucagon ↓":
+            st.success("Low glucagon → PKA inactive → PFK-2 remains as kinase → ↑ F2,6BP → ↑ glycolysis.")
+        elif regulation_choice == "Adrenaline ↑":
+            st.error("Adrenaline mimics glucagon via β-adrenergic receptor → ↑ cAMP → similar downstream effect → ↓ glycolysis.")
+        elif regulation_choice == "AMP > ATP":
+            st.info("AMP allosterically activates PFK-1 → ↑ glycolysis during low-energy state.")
+        elif regulation_choice == "ATP > AMP":
+            st.warning("High ATP allosterically inhibits PFK-1 → slows glycolysis during energy sufficiency.")
+        elif regulation_choice == "Fructose 2,6-bisphosphate ↑":
+            st.success("F2,6BP stabilizes active PFK-1 conformation → strongly promotes glycolysis.")
+        elif regulation_choice == "pH ↑":
+            st.info("Slightly alkaline pH during muscle activity removes ATP inhibition on PFK-1 → ↑ glycolysis.")
 
-    regulation_choice = st.radio("Select a Regulatory Condition", [
-        "Insulin ↑", "Insulin ↓", "Glucagon ↑", "Glucagon ↓", "Adrenaline ↑",
-        "AMP > ATP", "ATP > AMP", "Fructose 2,6-bisphosphate ↑", "pH ↑"
-    ])
-
-    st.markdown("#### 🧠 Logical Impact:")
-
-if regulation_choice == "Insulin ↑":
-        st.info("Insulin activates phosphoprotein phosphatase, which dephosphorylates PFK-2. This activates its kinase domain, increasing Fructose 2,6-bisphosphate levels. F2,6BP allosterically activates PFK-1, enhancing glycolytic flux.")
-elif regulation_choice == "Insulin ↓":
-        st.warning("In low-insulin states, PFK-2 is less active in its kinase form, reducing Fructose 2,6-bisphosphate. This downregulates PFK-1 and slows glycolysis.")
-elif regulation_choice == "Glucagon ↑":
-        st.error("Glucagon activates adenylate cyclase → cAMP → PKA → phosphorylates PFK-2. This inactivates the kinase domain and activates the phosphatase domain, reducing F2,6BP levels and suppressing PFK-1 activity. Glycolysis slows.")
-elif regulation_choice == "Glucagon ↓":
-        st.success("With less glucagon, PKA is inactive. PFK-2 remains dephosphorylated and active as a kinase. F2,6BP rises and stimulates PFK-1 → glycolysis proceeds.")
-    elif regulation_choice == "Adrenaline ↑":
-        st.error("Adrenaline mimics glucagon’s effect via β-adrenergic receptors → cAMP → PKA → phosphorylates PFK-2 → F2,6BP drops → glycolysis inhibited.")
-    elif regulation_choice == "AMP > ATP":
-        st.info("AMP allosterically activates PFK-1. High AMP means low energy → glycolysis accelerates to produce ATP.")
-    elif regulation_choice == "ATP > AMP":
-        st.warning("High ATP inhibits PFK-1 allosterically, signaling that the cell has sufficient energy. Glycolysis slows.")
-    elif regulation_choice == "Fructose 2,6-bisphosphate ↑":
-        st.success("F2,6BP is a potent allosteric activator of PFK-1. It stabilizes the R-state of the enzyme and enhances glycolysis even in the presence of inhibitory ATP.")
-    elif regulation_choice == "pH ↑":
-        st.info("Mildly alkaline pH (like during muscle activity) relieves the inhibitory effect of ATP on PFK-1, thereby promoting glycolysis.")
-# === PLACEHOLDERS FOR OTHER MODULES ===
+# === PLACEHOLDER MODULES ===
 elif pathway == "2️⃣ Phosphate Dehydrogenation":
     st.title("Phosphate Dehydrogenation (Coming Soon)")
     st.info("🚧 Module under construction.")
