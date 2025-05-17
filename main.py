@@ -1,4 +1,3 @@
-import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
 from io import BytesIO
@@ -53,25 +52,33 @@ st.markdown("""
 
 # === HELPER FUNCTION FOR ZOOM ===
 def display_interactive_zoom(image_path):
-    with open(image_path, "rb") as img_file:
-        img_bytes = img_file.read()
-        img_base64 = base64.b64encode(img_bytes).decode()
+    img = Image.open(image_path)
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    img_base64 = base64.b64encode(buffered.getvalue()).decode()
 
     components.html(f"""
-        <div style="width: 100%; height: 800px; overflow: auto; border: 1px solid #444; position: relative;">
-            <img src="data:image/png;base64,{img_base64}" 
-                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" 
-                 id="zoom-img" />
+        <div id="zoom-container" style="width: 100%; height: 850px; overflow: auto; border: 1px solid #444; position: relative;">
+            <img id="zoom-img" 
+                 src="data:image/png;base64,{img_base64}" 
+                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" />
         </div>
+
         <script>
-        let img = document.getElementById("zoom-img");
-        let scale = 1;
-        img.onclick = function() {{
-            scale = scale === 1 ? 2.5 : 1;
-            img.style.transform = "scale(" + scale + ")";
-        }};
+            setTimeout(() => {{
+                const img = document.getElementById("zoom-img");
+                const container = document.getElementById("zoom-container");
+                let scale = 1;
+
+                img.addEventListener("click", () => {{
+                    scale = scale === 1 ? 2.5 : 1;
+                    img.style.transform = "scale(" + scale + ")";
+                    container.scrollLeft = img.width / 2;
+                    container.scrollTop = img.height / 2;
+                }});
+            }}, 100);
         </script>
-    """, height=550)
+    """, height=900)
 
 # === SIDEBAR ===
 st.sidebar.markdown("<h2 class='custom-link'>🧬 <a href='/' style='text-decoration: none; color: inherit;'>PathwayPix</a></h2>", unsafe_allow_html=True)
