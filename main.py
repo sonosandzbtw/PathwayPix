@@ -58,7 +58,7 @@ def display_interactive_zoom(image_path):
         img_base64 = base64.b64encode(img_bytes).decode()
 
     components.html(f"""
-        <div style="width: 100%; height: 500px; overflow: scroll; border: 1px solid #444;">
+        <div style="width: 100%; height: 800px; overflow: auto; border: 1px solid #444; position: relative;">
             <img src="data:image/png;base64,{img_base64}" 
                  style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" 
                  id="zoom-img" />
