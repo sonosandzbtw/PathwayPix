@@ -34,7 +34,6 @@ if st.sidebar.button("🧬 PathwayPix"):
 
 st.sidebar.markdown("#### Pathways")
 pathway = st.sidebar.selectbox("Select a Pathway", [
-    "",  # blank option for main page
     "1\ufe0f\u20e3 Glycolysis",
     "2\ufe0f\u20e3 Phosphate Dehydrogenation",
     "3\ufe0f\u20e3 Krebs Cycle",
