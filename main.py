@@ -1,37 +1,8 @@
+import streamlit as st
 import streamlit.components.v1 as components
 from PIL import Image
 from io import BytesIO
 import base64
-
-def display_interactive_zoom(image_path):
-    img = Image.open(image_path)
-    buffered = BytesIO()
-    img.save(buffered, format="PNG")
-    img_base64 = base64.b64encode(buffered.getvalue()).decode()
-
-    components.html(f"""
-        <div style="width: 100%; height: 550px; overflow: auto; border: 1px solid #444; position: relative;">
-            <img src="data:image/png;base64,{img_base64}"
-                 id="zoom-img"
-                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" />
-        </div>
-
-        <script>
-            setTimeout(() => {{
-                const img = document.getElementById("zoom-img");
-                let scale = 1;
-
-                img.addEventListener("click", () => {{
-                    scale = scale === 1 ? 2.5 : 1;
-                    img.style.transform = "scale(" + scale + ")";
-                }});
-            }}, 100);
-        </script>
-    """, height=600)
-import streamlit as st
-from PIL import Image
-import base64
-from io import BytesIO
 
 # === PAGE CONFIG ===
 st.set_page_config(page_title="PathwayPix", layout="wide")
@@ -77,20 +48,30 @@ st.markdown("""
             border-radius: 8px;
             border: 1px solid #444;
         }
-
-        .zoom-img {
-            width: 100%;
-            max-width: 800px;
-            transition: transform 0.2s ease-in-out;
-            cursor: zoom-in;
-        }
-
-        .zoom-img:hover {
-            transform: scale(1.7);
-            z-index: 1000;
-        }
     </style>
 """, unsafe_allow_html=True)
+
+# === HELPER FUNCTION FOR ZOOM ===
+def display_interactive_zoom(image_path):
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        img_base64 = base64.b64encode(img_bytes).decode()
+
+    components.html(f"""
+        <div style="width: 100%; height: 500px; overflow: scroll; border: 1px solid #444;">
+            <img src="data:image/png;base64,{img_base64}" 
+                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" 
+                 id="zoom-img" />
+        </div>
+        <script>
+        let img = document.getElementById("zoom-img");
+        let scale = 1;
+        img.onclick = function() {{
+            scale = scale === 1 ? 2.5 : 1;
+            img.style.transform = "scale(" + scale + ")";
+        }};
+        </script>
+    """, height=550)
 
 # === SIDEBAR ===
 st.sidebar.markdown("<h2 class='custom-link'>🧬 <a href='/' style='text-decoration: none; color: inherit;'>PathwayPix</a></h2>", unsafe_allow_html=True)
@@ -107,28 +88,6 @@ pathway = st.sidebar.selectbox("", [
     "4️⃣ Electron Transport Chain"
 ])
 
-# === HELPER FUNCTION ===
-def display_interactive_zoom(image_path):
-    with open(image_path, "rb") as img_file:
-        img_bytes = img_file.read()
-        img_base64 = base64.b64encode(img_bytes).decode()
-
-    components.html(f"""
-        <div style="width: 100%; height: 500px; overflow: scroll; border: 1px solid #444;">
-            <img src="data:image/png;base64,{img_base64}" 
-                 style="width: 1000px; height: auto; transform-origin: top left;" 
-                 id="zoom-img" />
-        </div>
-        <script>
-        let img = document.getElementById("zoom-img");
-        let scale = 1;
-        img.onclick = function() {{
-            scale = scale === 1 ? 2.5 : 1;
-            img.style.transform = "scale(" + scale + ")";
-        }};
-        </script>
-    """, height=550)
-
 # === MAIN PAGE ===
 if pathway == "Select...":
     st.markdown("<h1>🧬 Welcome to PathwayPix</h1>", unsafe_allow_html=True)
@@ -138,43 +97,28 @@ if pathway == "Select...":
     <strong>Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list.</strong><br>
     But to me, it never felt like that.
     </p>
-
     <p style='font-size:17px; color:#EAEAEA;'>
     As someone deeply obsessed with organic chemistry, I realized that biochemistry is just <strong>Orgo in motion</strong> — carbon doing what carbon does best: reacting with purpose. 
     Once I started looking at pathways through that lens, everything clicked. There’s no need to memorize when you understand the logic behind each molecular move.
     </p>
-
     <p style='font-size:17px; color:#EAEAEA;'>
     Textbooks rarely explain it this way. They show you what happens, but not why. The mechanisms, the regulation, the energy logic — it’s all flattened into diagrams and labels.
     </p>
-
     <p style='font-size:17px; color:#EAEAEA;'>
     That’s why I built PathwayPix: to make biochemistry interactive, visual, and actually fun.
-    I want students to explore what’s happening, understand how hormones like insulin change the flow of metabolism, and zoom in to see the organic transformations behind each reaction.
-    </p>
-
-    <p style='font-size:17px; color:#EAEAEA;'>
-    If you’ve ever felt like biochemistry was just a wall of facts, I built this to show you that it’s actually a beautiful, logical dance of electrons. 
-    Let carbon do its thing. You’ll see.
     </p>
 
     <hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
 
     <h2 style='color:#FFFFFF;'>💡 Why I Built This Webapp</h2>
-
     <p style='font-size:17px; color:#EAEAEA;'>
     PathwayPix isn't about memorizing pathways. It's about understanding them: how they work, why they change, and where control happens.
     </p>
-
     <ul style='font-size:17px; color:#EAEAEA;'>
         <li><strong>See</strong> what’s happening in each step</li>
         <li><strong>Understand</strong> how small molecular shifts serve strategic purposes</li>
         <li><strong>Follow</strong> the biochemical logic, not just the names</li>
     </ul>
-
-    <p style='font-size:17px; color:#EAEAEA;'>
-    When you grasp the “why,” the “what” becomes obvious.
-    </p>
 
     <hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
 
@@ -182,42 +126,38 @@ if pathway == "Select...":
 
     <h3 style='color:#F5F5F5;'>1. Every isomerization happens for a reason.</h3>
     <p style='font-size:17px; color:#EAEAEA;'>
-    Molecules don’t randomly shift shapes. Whether it’s a carbonyl repositioning, a ring opening, or a sugar flipping forms — there’s always a strategy. 
-    Each isomerization supports a specific goal:
+    Molecules don’t randomly shift shapes. Every change has a purpose — to enable the next step in the pathway.
     </p>
-
     <ul style='font-size:17px; color:#EAEAEA;'>
-        <li>Preparing a molecule for cleavage</li>
-        <li>Enabling a redox reaction</li>
-        <li>Creating symmetry for branching</li>
+        <li>Preparing for cleavage</li>
+        <li>Allowing redox changes</li>
+        <li>Creating symmetry</li>
     </ul>
 
     <h3 style='color:#F5F5F5;'>2. Regulatory steps aren’t trivia — they’re turning points.</h3>
     <p style='font-size:17px; color:#EAEAEA;'>
-    Control points in metabolism aren’t just facts to memorize. They’re where the story shifts.
+    Don’t memorize regulation. Understand its role.
     </p>
-
     <ul style='font-size:17px; color:#EAEAEA;'>
-        <li>Why is regulation here?</li>
-        <li>What changes before and after this step?</li>
-        <li>What is the cell trying to achieve?</li>
+        <li>Why regulate here?</li>
+        <li>What’s the logic behind this control point?</li>
+        <li>What would happen without it?</li>
     </ul>
     """, unsafe_allow_html=True)
 
 # === GLYCOLYSIS PAGE ===
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
-display_interactive_zoom("assets/glycolysis.png")
     col1, col2 = st.columns([2, 2])
 
     with col1:
-        display_zoomable_image("assets/glycolysis.png")
+        display_interactive_zoom("assets/glycolysis.png")
 
     with col2:
         st.markdown("### 🔍 Explore Steps")
         step = st.radio("Select Step", [f"Step {i}" for i in range(1, 11)], horizontal=True)
         st.write(f"Details for {step} will appear here.")
-        # You can customize this part further for each step logic
+
         if step == "Step 3":
             st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
 
@@ -231,7 +171,6 @@ display_interactive_zoom("assets/glycolysis.png")
                 st.warning("Glucagon activates FBPase-2 (via cAMP), lowering F2,6BP and inhibiting glycolysis.")
             if "ATP ↑" in factors:
                 st.error("High ATP inhibits PFK-1 allosterically. Cell energy is sufficient.")
-            # Add more logic as desired
 
 # === PLACEHOLDERS FOR OTHER MODULES ===
 elif pathway == "2️⃣ Phosphate Dehydrogenation":
@@ -245,3 +184,4 @@ elif pathway == "3️⃣ Krebs Cycle":
 elif pathway == "4️⃣ Electron Transport Chain":
     st.title("Electron Transport Chain (Coming Soon)")
     st.info("🚧 Module under construction.")
+
