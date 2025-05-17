@@ -59,27 +59,24 @@ def display_interactive_zoom(image_path):
     img_base64 = base64.b64encode(buffered.getvalue()).decode()
 
     components.html(f"""
-        <div id="zoom-container" style="width: 100%; height: 850px; overflow: auto; border: 1px solid #444; position: relative;">
-            <img id="zoom-img" 
-                 src="data:image/png;base64,{img_base64}" 
-                 style="width: 1000px; height: auto; transform-origin: top left; transition: transform 0.3s ease;" />
+        <div id="zoom-container" style="width: 100%; height: 800px; overflow: auto; border: 1px solid #444;">
+            <img id="zoom-img"
+                src="data:image/png;base64,{img_base64}"
+                style="width: 1000px; height: auto; transition: width 0.3s ease;" />
         </div>
 
         <script>
             setTimeout(() => {{
                 const img = document.getElementById("zoom-img");
-                const container = document.getElementById("zoom-container");
-                let scale = 1;
+                let zoomed = false;
 
                 img.addEventListener("click", () => {{
-                    scale = scale === 1 ? 2.5 : 1;
-                    img.style.transform = "scale(" + scale + ")";
-                    container.scrollLeft = img.width / 2;
-                    container.scrollTop = img.height / 2;
+                    zoomed = !zoomed;
+                    img.style.width = zoomed ? "2500px" : "1000px";
                 }});
             }}, 100);
         </script>
-    """, height=900)
+    """, height=850)
 
 # === SIDEBAR ===
 st.sidebar.markdown("<h2 class='custom-link'>🧬 <a href='/' style='text-decoration: none; color: inherit;'>PathwayPix</a></h2>", unsafe_allow_html=True)
