@@ -105,20 +105,22 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === Sidebar content ===
-st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🧬 PathwayPix</a>', unsafe_allow_html=True)
-st.sidebar.markdown("#### Pathways")
+st.sidebar.markdown("<h2 style='color:#EAEAEA;'>📌 PathwayPix</h2>", unsafe_allow_html=True)
 
-pathway = st.sidebar.selectbox("Select a Pathway", [
+st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🏠 Home</a>', unsafe_allow_html=True)
+st.sidebar.markdown('<a class="custom-link" href="/How_to_use" target="_self">🛠 How to Use</a>', unsafe_allow_html=True)
+st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 About Developer</a>', unsafe_allow_html=True)
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("#### Select a Pathway", unsafe_allow_html=True)
+
+pathway = st.sidebar.selectbox("", [
     "Select...",
     "1️⃣ Glycolysis",
     "2️⃣ Phosphate Dehydrogenation",
     "3️⃣ Krebs Cycle",
     "4️⃣ Electron Transport Chain"
 ])
-
-st.sidebar.markdown("---")
-st.sidebar.markdown('<a class="custom-link" href="/How_to_use" target="_self">🛠 How to Use</a>', unsafe_allow_html=True)
-st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 About Developer</a>', unsafe_allow_html=True)
 
 # === Main content ===
 if pathway == "Select...":
