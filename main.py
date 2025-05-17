@@ -3,20 +3,42 @@ from PIL import Image
 
 st.set_page_config(page_title="PathwayPix", layout="wide")
 
-# Sidebar Navigation
-page = st.sidebar.radio("Navigate", ["Pathway Viewer", "How to Use", "About Developer"])
+# === SIDEBAR ===
+st.sidebar.markdown("## PathwayPix")
+st.sidebar.markdown("#### Pathways")
 
-if page == "Pathway Viewer":
-    st.title("🧬 PathwayPix")
-    st.write("Visualizing glycolysis with logic, color, and clarity.")
-    img = Image.open("assets/glycolysis.png")
-    st.image(img, use_column_width=True)
-    # Add toggles here (ATP, NADH, regulation, etc.)
+# Clean selectbox for pathway selection — no icons, no bullets
+pathway = st.sidebar.selectbox("Select a pathway", [
+    "Glycolysis",
+    "Phosphate Dehydrogenation",
+    "Krebs Cycle",
+    "Electron Transport Chain"
+])
 
-elif page == "How to Use":
-    with open("docs/how_to_use.md", "r") as f:
-        st.markdown(f.read())
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Navigation")
+st.sidebar.markdown("[How to Use](pages/How_to_use.py)")
+st.sidebar.markdown("[About Developer](pages/About.py)")
 
-elif page == "About Developer":
-    with open("docs/about.md", "r") as f:
-        st.markdown(f.read())
+# === MAIN CONTENT ===
+if pathway == "Glycolysis":
+    st.title("Glycolysis Explorer")
+    st.markdown("Explore the steps, enzymes, and energy flow of glycolysis.")
+
+    try:
+        img = Image.open("assets/glycolysis.png")
+        st.image(img, use_column_width=True)
+    except FileNotFoundError:
+        st.warning("⚠️ Pathway image not found. Please place `glycolysis.png` inside the `assets/` folder.")
+
+elif pathway == "Phosphate Dehydrogenation":
+    st.title("Phosphate Dehydrogenation (Coming Soon)")
+    st.info("🚧 This module is under construction.")
+
+elif pathway == "Krebs Cycle":
+    st.title("Krebs Cycle (Coming Soon)")
+    st.info("🚧 This module is under construction.")
+
+elif pathway == "Electron Transport Chain":
+    st.title("Electron Transport Chain (Coming Soon)")
+    st.info("🚧 This module is under construction.")
