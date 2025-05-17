@@ -93,34 +93,36 @@ Let carbon do its thing. You’ll see.
 
     # 🎯 Design Philosophy Behind This Webapp
 
-    ## 1. Every Isomerization Happens for a Reason
+     1. Every Isomerization Happens for a Reason.
 
-    Molecules don’t shift forms randomly — they adapt with purpose.  
-    Whether it’s moving a carbonyl, rearranging ring structures, or converting sugar forms, each isomerization serves a strategic role:
+Molecules don’t shift forms randomly — they adapt purposefully.
+Whether it’s moving a carbonyl, rearranging ring structures, or converting between sugar forms, every isomerization in metabolism serves a strategic goal:
 
-    - To prepare for a specific cleavage  
-    - To enable a redox reaction  
-    - To create symmetry or enable branching  
+	•	To prepare for a specific cleavage
+	•	To enable a redox reaction
+	•	To create symmetry or facilitate branching
 
-    We don’t memorize these — we understand them.  
-    This app shows why these changes aren't just chemical — they’re **logical**.
+We don’t memorize these — we understand them.
+And this app will show why that structural shift is not just chemical — it’s logical.
 
-    ---
+⸻
 
-    ## 2. Regulatory Steps Turn Pathways Into Stories
+2. Regulatory Steps Are Where Biochemistry Becomes a Story.
 
-    Every pathway has checkpoints — not because cells love drama,  
-    but because life needs control.
+Every pathway has checkpoints — not because cells love drama, but because life needs control.
 
-    Instead of memorizing “Step 3 is regulated by F2,6-BP,” you’ll start asking:
-    - Why here?  
-    - Why not earlier or later?  
-    - What’s the biochemical pressure at this point?
+Instead of memorizing Step 3 is “regulated by F2,6-BP,” you’ll ask:
+	•	Why here?
+	•	Why not earlier or later?
+	•	What’s the biochemical pressure at this point?
 
-    Once you understand the logic — like how **PFK-1 commits the cell to full glycolysis** — memorization fades. A **cause-effect narrative** emerges.  
-    Regulation becomes story.
+Once you understand the logic — like how PFK-1 is a gatekeeper that commits the cell to full glycolysis — the memorization fades, and a cause-effect story emerges.
 
-    ---
+Regulation becomes narrative.
+
+⸻
+
+
 
     # 🧠 What This Means for You
 
@@ -131,9 +133,6 @@ Let carbon do its thing. You’ll see.
 
     ---
 
-    ### ✴️ Welcome to PathwayPix.  
-    A new lens for the logic of life.
-    """)
 
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
