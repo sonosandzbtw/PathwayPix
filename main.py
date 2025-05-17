@@ -37,7 +37,7 @@ st.markdown("""
         }
 
         body {
-            background-color: #10172A;
+            background-color: #1F618D;
             color: #E3E9F0;
         }
     </style>
