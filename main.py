@@ -3,6 +3,67 @@ from PIL import Image
 
 # === Page config ===
 st.set_page_config(page_title="PathwayPix", layout="wide")
+st.markdown("""
+    <style>
+        :root {
+            --main-bg-color: #121212;
+            --sidebar-bg-color: #1E1E1E;
+            --text-color: #EAEAEA;
+            --accent-color: #9F7AEA;
+        }
+
+        html, body, [data-testid="stAppViewContainer"] {
+            background-color: var(--main-bg-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        [data-testid="stSidebar"] {
+            background-color: var(--sidebar-bg-color) !important;
+            padding-top: 2rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-right: 1px solid #333;
+        }
+
+        [data-testid="stSidebar"] .css-1v0mbdj {
+            padding: 0 !important;
+        }
+
+        h1, h2, h3, h4, h5 {
+            color: var(--text-color) !important;
+        }
+
+        /* Selectbox customization */
+        .stSelectbox div[data-baseweb="select"] {
+            background-color: #1E1E1E !important;
+            color: #EAEAEA !important;
+            border: 1px solid #444 !important;
+            border-radius: 8px;
+            padding: 0.5rem;
+        }
+
+        .css-1kyxreq {
+            color: var(--text-color) !important;
+        }
+
+        .custom-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .custom-link:hover {
+            background-color: #292929;
+            color: var(--accent-color) !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # === Custom styling ===
 st.markdown("""
