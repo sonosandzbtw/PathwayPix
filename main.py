@@ -207,7 +207,7 @@ if pathway == "Select...":
 # === GLYCOLYSIS PAGE ===
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
-
+display_interactive_zoom("assets/glycolysis.png")
     col1, col2 = st.columns([2, 2])
 
     with col1:
