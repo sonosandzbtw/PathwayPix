@@ -3,7 +3,7 @@ from PIL import Image
 
 st.set_page_config(page_title="PathwayPix", layout="wide")
 
-# Custom CSS for Zoomcamp-style layout and colors
+# Custom CSS for Zoomcamp-style layout and dark theme
 st.markdown("""
     <style>
         .main {
@@ -19,12 +19,51 @@ st.markdown("""
         .block-container {
             padding: 3rem 2rem 2rem 2rem;
         }
+        .sidebar .sidebar-content {
+            background-color: #0f172a;
+        }
+        a {
+            color: #38bdf8 !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-st.title("🧬 Welcome to PathwayPix")
+# Sidebar
+with st.sidebar:
+    st.markdown("## 🧬 PathwayPix")
+    selected_pathway = st.selectbox(
+        "Select a Pathway",
+        ["Select...", "Glycolysis", "Phosphate Dehydrogenation", "Krebs Cycle", "Electron Transport Chain"],
+        index=0
+    )
+    st.markdown("---")
+    st.page_link("pages/how_to_use.py", label="How to Use")
+    st.page_link("pages/about.py", label="About Developer")
 
-st.markdown("""
+# Main Content
+if selected_pathway == "Glycolysis":
+    st.title("Glycolysis")
+    try:
+        st.image("assets/glycolysis.png", use_container_width=True)
+    except:
+        st.warning("Please add 'glycolysis.png' to the 'assets/' folder.")
+
+elif selected_pathway == "Phosphate Dehydrogenation":
+    st.title("Phosphate Dehydrogenation")
+    st.warning("Coming soon!")
+
+elif selected_pathway == "Krebs Cycle":
+    st.title("Krebs Cycle")
+    st.warning("Coming soon!")
+
+elif selected_pathway == "Electron Transport Chain":
+    st.title("Electron Transport Chain")
+    st.warning("Coming soon!")
+
+else:
+    st.title("🧬 Welcome to PathwayPix")
+
+    st.markdown("""
 Biochemistry is usually taught as a list of things to memorize: pathways, enzymes, cofactors, and control steps. But for me, it was never about memorization.
 
 I’ve always been in love with organic chemistry. And one day it just clicked—biochemistry is organic chemistry in motion. It's not random, it's not arbitrary. Carbon atoms are reacting, adapting, and creating logic with every step. That’s when I stopped seeing it as content to study and started seeing it as a system to understand.
@@ -62,4 +101,3 @@ You’ll begin to see pathways not as walls of facts, but as beautifully enginee
 
 Let carbon do its thing. You’ll see.
 """)
-
