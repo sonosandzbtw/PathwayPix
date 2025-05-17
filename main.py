@@ -18,12 +18,12 @@ st.markdown("""
         }
 
         [data-testid="stAppViewContainer"] {
-            background-color: #001E55 !important;
+            background-color: #02003E !important;
         }
 
         [data-testid="stAppViewBlockContainer"] {
             padding: 2rem 3rem;
-            background-color: #001E55 !important;
+            background-color: #02003E !important;
             color: #E3E9F0;
         }
 
