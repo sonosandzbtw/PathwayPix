@@ -29,7 +29,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === Sidebar content ===
-if st.sidebar.button("🏠 PathwayPix Home"):
+if st.sidebar.button("🧬 PathwayPix"):
     st.session_state["pathway"] = ""
 
 st.sidebar.markdown("#### Pathways")
