@@ -161,16 +161,48 @@ elif pathway == "1️⃣ Glycolysis":
         if step == "Step 3":
             st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
 
-        st.markdown("### 🧪 Regulation")
-        factors = st.multiselect("Select Conditions", ["Insulin ↑", "Glucagon ↑", "ATP ↑", "AMP ↑", "Citrate ↑", "ADP ↑"])
-        if factors:
-            st.markdown("#### 🧠 Logical Impact:")
-            if "Insulin ↑" in factors:
-                st.info("Insulin upregulates PFK-1 and increases glycolytic flux.")
-            if "Glucagon ↑" in factors:
-                st.warning("Glucagon activates FBPase-2 (via cAMP), lowering F2,6BP and inhibiting glycolysis.")
-            if "ATP ↑" in factors:
-                st.error("High ATP inhibits PFK-1 allosterically. Cell energy is sufficient.")
+       st.markdown("### 🧪 Regulation")
+
+regulation_choice = st.radio("Select a Regulatory Condition", [
+    "Insulin ↑",
+    "Insulin ↓",
+    "Glucagon ↑",
+    "Glucagon ↓",
+    "Adrenaline ↑",
+    "AMP > ATP",
+    "ATP > AMP",
+    "Fructose 2,6-bisphosphate ↑",
+    "pH ↑"
+])
+
+st.markdown("#### 🧠 Logical Impact:")
+
+if regulation_choice == "Insulin ↑":
+    st.info("Insulin activates phosphoprotein phosphatase, which dephosphorylates PFK-2. This activates its kinase domain, increasing Fructose 2,6-bisphosphate levels. F2,6BP allosterically activates PFK-1, enhancing glycolytic flux.")
+
+elif regulation_choice == "Insulin ↓":
+    st.warning("In low-insulin states, PFK-2 is less active in its kinase form, reducing Fructose 2,6-bisphosphate. This downregulates PFK-1 and slows glycolysis.")
+
+elif regulation_choice == "Glucagon ↑":
+    st.error("Glucagon activates adenylate cyclase → cAMP → PKA → phosphorylates PFK-2. This inactivates the kinase domain and activates the phosphatase domain, reducing F2,6BP levels and suppressing PFK-1 activity. Glycolysis slows.")
+
+elif regulation_choice == "Glucagon ↓":
+    st.success("With less glucagon, PKA is inactive. PFK-2 remains dephosphorylated and active as a kinase. F2,6BP rises and stimulates PFK-1 → glycolysis proceeds.")
+
+elif regulation_choice == "Adrenaline ↑":
+    st.error("Adrenaline mimics glucagon’s effect via β-adrenergic receptors → cAMP → PKA → phosphorylates PFK-2 → F2,6BP drops → glycolysis inhibited.")
+
+elif regulation_choice == "AMP > ATP":
+    st.info("AMP allosterically activates PFK-1. High AMP means low energy → glycolysis accelerates to produce ATP.")
+
+elif regulation_choice == "ATP > AMP":
+    st.warning("High ATP inhibits PFK-1 allosterically, signaling that the cell has sufficient energy. Glycolysis slows.")
+
+elif regulation_choice == "Fructose 2,6-bisphosphate ↑":
+    st.success("F2,6BP is a potent allosteric activator of PFK-1. It stabilizes the R-state of the enzyme and enhances glycolysis even in the presence of inhibitory ATP.")
+
+elif regulation_choice == "pH ↑":
+    st.info("Mildly alkaline pH (like during muscle activity) relieves the inhibitory effect of ATP on PFK-1, thereby promoting glycolysis.")
 
 # === PLACEHOLDERS FOR OTHER MODULES ===
 elif pathway == "2️⃣ Phosphate Dehydrogenation":
