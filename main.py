@@ -3,64 +3,59 @@ from PIL import Image
 
 # === Page config ===
 st.set_page_config(page_title="PathwayPix", layout="wide")
+import streamlit as st
+
+
+# Apply custom CSS
 st.markdown("""
     <style>
-        :root {
-            --main-bg-color: #121212;
-            --sidebar-bg-color: #1E1E1E;
-            --text-color: #EAEAEA;
-            --accent-color: #9F7AEA;
+        /* MAIN CONTAINER BACKGROUND */
+        [data-testid="stAppViewContainer"] {
+            background-color: #121212 !important;
         }
 
-        html, body, [data-testid="stAppViewContainer"] {
-            background-color: var(--main-bg-color) !important;
-            color: var(--text-color) !important;
+        /* MAIN TEXT COLOR */
+        [data-testid="stAppViewBlockContainer"] {
+            color: #EAEAEA !important;
+            background-color: #121212 !important;
+            padding: 2rem 3rem;
         }
 
+        /* SIDEBAR BACKGROUND */
         [data-testid="stSidebar"] {
-            background-color: var(--sidebar-bg-color) !important;
-            padding-top: 2rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            border-right: 1px solid #333;
-        }
-
-        [data-testid="stSidebar"] .css-1v0mbdj {
-            padding: 0 !important;
-        }
-
-        h1, h2, h3, h4, h5 {
-            color: var(--text-color) !important;
-        }
-
-        /* Selectbox customization */
-        .stSelectbox div[data-baseweb="select"] {
             background-color: #1E1E1E !important;
             color: #EAEAEA !important;
+        }
+
+        /* HEADERS & TITLES */
+        h1, h2, h3, h4, h5 {
+            color: #FFFFFF !important;
+        }
+
+        /* SELECTBOX STYLING */
+        div[data-baseweb="select"] {
+            background-color: #2C2C2C !important;
+            color: #EAEAEA !important;
+            border-radius: 8px !important;
             border: 1px solid #444 !important;
-            border-radius: 8px;
-            padding: 0.5rem;
         }
 
-        .css-1kyxreq {
-            color: var(--text-color) !important;
-        }
-
+        /* SIDEBAR LINK BUTTON STYLE */
         .custom-link {
-            color: var(--text-color) !important;
+            color: #EAEAEA !important;
+            text-decoration: none !important;
             font-weight: 500;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 1rem;
+            font-size: 16px;
             padding: 0.5rem 0.75rem;
+            display: block;
             border-radius: 8px;
-            background-color: transparent;
+            margin-bottom: 0.5rem;
             transition: all 0.2s ease-in-out;
         }
 
         .custom-link:hover {
             background-color: #292929;
-            color: var(--accent-color) !important;
+            color: #A9D2FF !important;
         }
     </style>
 """, unsafe_allow_html=True)
