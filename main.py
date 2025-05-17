@@ -150,15 +150,15 @@ elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
     col1, col2 = st.columns([2, 2])
 
-    with col1:
+with col1:
         display_interactive_zoom("assets/glycolysis.png")
 
-    with col2:
+with col2:
     st.markdown("### 🔍 Explore Steps")
     step = st.radio("Select Step", [f"Step {i}" for i in range(1, 11)], horizontal=True)
     st.write(f"Details for {step} will appear here.")
 
-    if step == "Step 3":
+if step == "Step 3":
         st.success("Step 3 is catalyzed by **PFK-1**, the key regulatory step committed to glycolysis.")
 
     # ✅ Correct indentation begins here
@@ -171,13 +171,13 @@ elif pathway == "1️⃣ Glycolysis":
 
     st.markdown("#### 🧠 Logical Impact:")
 
-    if regulation_choice == "Insulin ↑":
+if regulation_choice == "Insulin ↑":
         st.info("Insulin activates phosphoprotein phosphatase, which dephosphorylates PFK-2. This activates its kinase domain, increasing Fructose 2,6-bisphosphate levels. F2,6BP allosterically activates PFK-1, enhancing glycolytic flux.")
-    elif regulation_choice == "Insulin ↓":
+elif regulation_choice == "Insulin ↓":
         st.warning("In low-insulin states, PFK-2 is less active in its kinase form, reducing Fructose 2,6-bisphosphate. This downregulates PFK-1 and slows glycolysis.")
-    elif regulation_choice == "Glucagon ↑":
+elif regulation_choice == "Glucagon ↑":
         st.error("Glucagon activates adenylate cyclase → cAMP → PKA → phosphorylates PFK-2. This inactivates the kinase domain and activates the phosphatase domain, reducing F2,6BP levels and suppressing PFK-1 activity. Glycolysis slows.")
-    elif regulation_choice == "Glucagon ↓":
+elif regulation_choice == "Glucagon ↓":
         st.success("With less glucagon, PKA is inactive. PFK-2 remains dephosphorylated and active as a kinase. F2,6BP rises and stimulates PFK-1 → glycolysis proceeds.")
     elif regulation_choice == "Adrenaline ↑":
         st.error("Adrenaline mimics glucagon’s effect via β-adrenergic receptors → cAMP → PKA → phosphorylates PFK-2 → F2,6BP drops → glycolysis inhibited.")
