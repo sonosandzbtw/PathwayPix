@@ -45,7 +45,6 @@ st.markdown("""
 
 # === Sidebar content ===
 st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🧬 PathwayPix</a>', unsafe_allow_html=True)
-
 st.sidebar.markdown("#### Pathways")
 
 pathway = st.sidebar.selectbox("Select a Pathway", [
@@ -62,7 +61,6 @@ st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 Ab
 
 # === Main content ===
 if pathway == "Select...":
-    st.title("🧬 Welcome to PathwayPix")
     st.markdown("""
 <h1 style='color:#FFFFFF;'>🧬 Welcome to PathwayPix</h1>
 
@@ -148,8 +146,6 @@ Rather than just labeling PFK-1 as “regulated,” we ask:
 When you understand regulation as narrative pressure — not just static control — the logic comes alive.
 </p>
 """, unsafe_allow_html=True)
-    ---
-
 
 elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
