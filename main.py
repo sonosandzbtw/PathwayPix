@@ -43,7 +43,7 @@ st.markdown("""
 
         [data-testid="stAppViewBlockContainer"] {
             padding: 2rem 3rem;
-            background-color: #080179 !important;
+            background-color: #42414F  !important;
             color: #E3E9F0;
         }
     </style>
