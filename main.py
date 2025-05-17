@@ -4,7 +4,7 @@ from PIL import Image
 # === Page config ===
 st.set_page_config(page_title="PathwayPix", layout="wide")
 
-# === Sidebar Styling ===
+# === Custom sidebar styling ===
 st.markdown("""
     <style>
         [data-testid="stSidebar"] {
@@ -18,12 +18,12 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# === Sidebar ===
+# === Sidebar content ===
 st.sidebar.markdown("## PathwayPix")
 st.sidebar.markdown("#### Pathways")
 
-# Use selectbox to avoid bullet-style radio buttons
 pathway = st.sidebar.selectbox("Select a Pathway", [
+    "",  # Blank default to separate from main page
     "1\ufe0f\u20e3 Glycolysis",
     "2\ufe0f\u20e3 Phosphate Dehydrogenation",
     "3\ufe0f\u20e3 Krebs Cycle",
@@ -35,14 +35,14 @@ st.sidebar.markdown("[How to Use](pages/How_to_use.py)")
 st.sidebar.markdown("[About Developer](pages/About.py)")
 
 # === Main Page View ===
-st.title("Welcome to PathwayPix")
-st.markdown("""
-This is your molecular logic visualization tool.
-Choose a pathway from the left to begin.
-""")
+if pathway == "":
+    st.title("Welcome to PathwayPix")
+    st.markdown("""
+    This is your molecular logic visualization tool.
+    Choose a pathway from the left to begin.
+    """)
 
-# === Pathway Views ===
-if pathway == "1\ufe0f\u20e3 Glycolysis":
+elif pathway == "1\ufe0f\u20e3 Glycolysis":
     st.title("Glycolysis")
     try:
         img = Image.open("assets/glycolysis.png")
