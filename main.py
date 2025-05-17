@@ -64,73 +64,90 @@ st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 Ab
 if pathway == "Select...":
     st.title("🧬 Welcome to PathwayPix")
     st.markdown("""
-    **Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list — but to me, it’s never felt like that. As someone who’s deeply obsessed with organic chemistry, I realized that biochemistry is just Orgo in motion — carbon doing what carbon does best: reacting with purpose.
+<h1 style='color:#FFFFFF;'>🧬 Welcome to PathwayPix</h1>
+
+<p style='font-size:17px; color:#E2E2E2;'>
+<strong>Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list.</strong>  
+But to me, it never felt like that.
+</p>
+
+<p style='font-size:17px; color:#E2E2E2;'>
+As someone deeply obsessed with organic chemistry, I realized that biochemistry is just <strong>Orgo in motion</strong> — carbon doing what carbon does best: reacting with purpose.  
 Once I started looking at pathways through that lens, everything clicked. There’s no need to memorize when you understand the logic behind each molecular move.
-But textbooks rarely explain it that way. They show you what happens, but not why. The mechanisms, the regulation, the energy logic — it’s all flattened into diagrams and labels.
+</p>
 
-That’s why I’m building this webapp: To make biochemistry interactive, visual, and actually FUN! For everyone. I want students to see what’s happening, explore how hormones like insulin change metabolic flow, and even zoom in to understand the organic transformations behind each step.
-If you’ve ever felt like biochem was just a wall of facts — I built this to show you that it’s actually a beautiful, logical dance of electrons.
-Let carbon do its thing. You’ll see.
+<p style='font-size:17px; color:#E2E2E2;'>
+Textbooks rarely explain it this way. They show you what happens, but not why. The mechanisms, the regulation, the energy logic — it’s all flattened into diagrams and labels.
+</p>
 
-    ---
+<p style='font-size:17px; color:#E2E2E2;'>
+That’s why I built PathwayPix: to make biochemistry interactive, visual, and actually fun.  
+I want students to explore what’s happening, understand how hormones like insulin change the flow of metabolism, and zoom in to see the organic transformations behind each reaction.
+</p>
 
-    ### Why I Built This Webapp
+<p style='font-size:17px; color:#E2E2E2;'>
+If you’ve ever felt like biochemistry was just a wall of facts, I built this to show you that it’s actually a beautiful, logical dance of electrons.  
+Let carbon do its thing — you’ll see.
+</p>
 
-    To make biochemistry interactive, visual, and actually **fun** — for everyone.
+<hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
 
-    I want students to:
-    - **See** what’s happening,
-    - **Explore** how hormones like insulin shift metabolic flow,
-    - **Zoom in** to understand the organic transformations behind each step.
+<h2 style='color:#FFFFFF;'>💡 Why I Built This Webapp</h2>
 
-    If you’ve ever felt like biochem was just a wall of facts —  
-    I built this to show you that it’s actually a **beautiful, logical dance of electrons**.
+<p style='font-size:17px; color:#E2E2E2;'>
+PathwayPix isn't about memorizing pathways. It's about understanding them — how they work, why they change, and where control happens.
+</p>
 
-    > Let carbon do its thing.  
-    > You’ll see.
+<p style='font-size:17px; color:#E2E2E2;'>
+This platform helps you:<br>
+<strong>See</strong> what’s happening in each step<br>
+<strong>Understand</strong> how small molecular shifts serve strategic purposes<br>
+<strong>Follow</strong> the biochemical logic, not just the names
+</p>
 
-    ---
+<p style='font-size:17px; color:#E2E2E2;'>
+When you grasp the “why,” the “what” becomes obvious.
+</p>
 
-    # 🎯 Design Philosophy Behind This Webapp
+<hr style='margin-top:40px; margin-bottom:40px; border-color:#444;'>
 
-     1. Every Isomerization Happens for a Reason.
+<h2 style='color:#FFFFFF;'>🧠 Design Philosophy</h2>
 
-Molecules don’t shift forms randomly — they adapt purposefully.
-Whether it’s moving a carbonyl, rearranging ring structures, or converting between sugar forms, every isomerization in metabolism serves a strategic goal:
+<h3 style='color:#F5F5F5;'>1. Every isomerization happens for a reason.</h3>
+<p style='font-size:17px; color:#E2E2E2;'>
+Molecules don’t randomly shift shapes. Whether it’s a carbonyl repositioning, a ring opening, or a sugar flipping forms — there’s always a strategy.
+Each isomerization supports a specific goal:
+</p>
 
-	•	To prepare for a specific cleavage
-	•	To enable a redox reaction
-	•	To create symmetry or facilitate branching
+<ul style='font-size:17px; color:#E2E2E2;'>
+<li>Preparing a molecule for cleavage</li>
+<li>Enabling a redox reaction</li>
+<li>Creating symmetry for branching</li>
+</ul>
 
-We don’t memorize these — we understand them.
-And this app will show why that structural shift is not just chemical — it’s logical.
+<p style='font-size:17px; color:#E2E2E2;'>
+You’ll see how structure dictates strategy — and how elegant it all becomes when you look at it through an organic chemistry lens.
+</p>
 
-⸻
+<h3 style='color:#F5F5F5;'>2. Regulatory steps aren’t trivia — they’re turning points.</h3>
+<p style='font-size:17px; color:#E2E2E2;'>
+Control points in metabolism aren’t just facts to memorize. They’re where the story shifts.
+</p>
 
-2. Regulatory Steps Are Where Biochemistry Becomes a Story.
+<p style='font-size:17px; color:#E2E2E2;'>
+Rather than just labeling PFK-1 as “regulated,” we ask:
+</p>
 
-Every pathway has checkpoints — not because cells love drama, but because life needs control.
+<ul style='font-size:17px; color:#E2E2E2;'>
+<li>Why is regulation here?</li>
+<li>What changes before and after this step?</li>
+<li>What is the cell trying to achieve?</li>
+</ul>
 
-Instead of memorizing Step 3 is “regulated by F2,6-BP,” you’ll ask:
-	•	Why here?
-	•	Why not earlier or later?
-	•	What’s the biochemical pressure at this point?
-
-Once you understand the logic — like how PFK-1 is a gatekeeper that commits the cell to full glycolysis — the memorization fades, and a cause-effect story emerges.
-
-Regulation becomes narrative.
-
-⸻
-
-
-
-    # 🧠 What This Means for You
-
-    - You'll see structural changes as **purposeful**, not arbitrary  
-    - You'll understand control points as **strategic**, not trivia  
-    - You'll stop treating biochem like a **high-stakes flashcard game**,  
-      and start seeing it like a **well-engineered molecular system**
-
+<p style='font-size:17px; color:#E2E2E2;'>
+When you understand regulation as narrative pressure — not just static control — the logic comes alive.
+</p>
+""", unsafe_allow_html=True)
     ---
 
 
