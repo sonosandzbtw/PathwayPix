@@ -71,7 +71,8 @@ But textbooks rarely explain it that way. They show you what happens, but not wh
 That’s why I’m building this webapp: To make biochemistry interactive, visual, and actually FUN! For everyone. I want students to see what’s happening, explore how hormones like insulin change metabolic flow, and even zoom in to understand the organic transformations behind each step.
 If you’ve ever felt like biochem was just a wall of facts — I built this to show you that it’s actually a beautiful, logical dance of electrons.
 Let carbon do its thing. You’ll see.
-    
+
+    ---
 
     ### Why I Built This Webapp
 
