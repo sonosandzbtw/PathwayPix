@@ -1,104 +1,159 @@
 import streamlit as st
 from PIL import Image
 
+# === Page config ===
 st.set_page_config(page_title="PathwayPix", layout="wide")
 
-# Custom CSS for Zoomcamp-style layout and dark theme
+# === Custom styling ===
 st.markdown("""
     <style>
-        .main {
-            background-color: #0f172a;
-            color: #f1f5f9;
+        :root {
+            --sidebar-bg-color: #1E2A47;
+            --link-color: #E3E9F0;
+            --link-hover-color: #7FC8F8;
         }
-        .css-1d391kg, .css-18e3th9 {
-            background-color: #0f172a !important;
+
+        [data-testid="stSidebar"] {
+            background-color: var(--sidebar-bg-color) !important;
         }
-        .css-10trblm {
-            color: #f1f5f9;
+
+        [data-testid="stAppViewContainer"] {
+            background-color: #020125 !important;
         }
-        .block-container {
-            padding: 3rem 2rem 2rem 2rem;
+
+        [data-testid="stAppViewBlockContainer"] {
+            padding: 2rem 3rem;
+            background-color: #020125 !important;
+            color: #E3E9F0;
         }
-        .sidebar .sidebar-content {
-            background-color: #0f172a;
+
+        .custom-link {
+            color: #E3E9F0 !important;
+            text-decoration: none !important;
+            font-weight: 500;
+            font-size: 16px;
+            margin: 0.5rem 0;
+            display: inline-block;
+            transition: color 0.2s ease;
         }
-        a {
-            color: #38bdf8 !important;
+
+        .custom-link:hover {
+            color: #A0D7F7 !important;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar
-with st.sidebar:
-    st.markdown("## 🧬 PathwayPix")
-    selected_pathway = st.selectbox(
-        "Select a Pathway",
-        ["Select...", "Glycolysis", "Phosphate Dehydrogenation", "Krebs Cycle", "Electron Transport Chain"],
-        index=0
-    )
-    st.markdown("---")
-    st.page_link("pages/how_to_use.py", label="How to Use")
-    st.page_link("pages/about.py", label="About Developer")
+# === Sidebar content ===
+st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🧬 PathwayPix</a>', unsafe_allow_html=True)
 
-# Main Content
-if selected_pathway == "Glycolysis":
+st.sidebar.markdown("#### Pathways")
+
+pathway = st.sidebar.selectbox("Select a Pathway", [
+    "Select...",
+    "1️⃣ Glycolysis",
+    "2️⃣ Phosphate Dehydrogenation",
+    "3️⃣ Krebs Cycle",
+    "4️⃣ Electron Transport Chain"
+])
+
+st.sidebar.markdown("---")
+st.sidebar.markdown('<a class="custom-link" href="/How_to_use" target="_self">🛠 How to Use</a>', unsafe_allow_html=True)
+st.sidebar.markdown('<a class="custom-link" href="/About" target="_self">👤 About Developer</a>', unsafe_allow_html=True)
+
+# === Main content ===
+if pathway == "Select...":
+    st.title("🧬 Welcome to PathwayPix")
+    st.markdown("""
+    **Biochemistry is often taught as a subject full of pathways to memorize, enzymes to name, and cofactors to list — but to me, it’s never felt like that.**  
+    As someone deeply obsessed with organic chemistry, I realized something simple:  
+    **Biochemistry is just Orgo in motion** — carbon doing what carbon does best: reacting with purpose.
+
+    Once I started looking at pathways through that lens, everything clicked.  
+    There’s no need to memorize when you understand the logic behind each molecular move.
+
+    But textbooks rarely explain it that way.  
+    They show you **what** happens, but not **why** — the mechanisms, the regulation, the energy logic — it's all flattened into diagrams and labels.
+
+    ---
+
+    ### Why I Built This Webapp
+
+    To make biochemistry interactive, visual, and actually **fun** — for everyone.
+
+    I want students to:
+    - **See** what’s happening,
+    - **Explore** how hormones like insulin shift metabolic flow,
+    - **Zoom in** to understand the organic transformations behind each step.
+
+    If you’ve ever felt like biochem was just a wall of facts —  
+    I built this to show you that it’s actually a **beautiful, logical dance of electrons**.
+
+    > Let carbon do its thing.  
+    > You’ll see.
+
+    ---
+
+    # 🎯 Design Philosophy Behind This Webapp
+
+    ## 1. Every Isomerization Happens for a Reason
+
+    Molecules don’t shift forms randomly — they adapt with purpose.  
+    Whether it’s moving a carbonyl, rearranging ring structures, or converting sugar forms, each isomerization serves a strategic role:
+
+    - To prepare for a specific cleavage  
+    - To enable a redox reaction  
+    - To create symmetry or enable branching  
+
+    We don’t memorize these — we understand them.  
+    This app shows why these changes aren't just chemical — they’re **logical**.
+
+    ---
+
+    ## 2. Regulatory Steps Turn Pathways Into Stories
+
+    Every pathway has checkpoints — not because cells love drama,  
+    but because life needs control.
+
+    Instead of memorizing “Step 3 is regulated by F2,6-BP,” you’ll start asking:
+    - Why here?  
+    - Why not earlier or later?  
+    - What’s the biochemical pressure at this point?
+
+    Once you understand the logic — like how **PFK-1 commits the cell to full glycolysis** — memorization fades. A **cause-effect narrative** emerges.  
+    Regulation becomes story.
+
+    ---
+
+    # 🧠 What This Means for You
+
+    - You'll see structural changes as **purposeful**, not arbitrary  
+    - You'll understand control points as **strategic**, not trivia  
+    - You'll stop treating biochem like a **high-stakes flashcard game**,  
+      and start seeing it like a **well-engineered molecular system**
+
+    ---
+
+    ### ✴️ Welcome to PathwayPix.  
+    A new lens for the logic of life.
+    """)
+
+elif pathway == "1️⃣ Glycolysis":
     st.title("Glycolysis")
     try:
-        st.image("assets/glycolysis.png", use_container_width=True)
-    except:
-        st.warning("Please add 'glycolysis.png' to the 'assets/' folder.")
+        img = Image.open("assets/glycolysis.png")
+        st.image(img, use_container_width=True)
+    except FileNotFoundError:
+        st.warning("⚠️ Please add 'glycolysis.png' to the 'assets/' folder.")
 
-elif selected_pathway == "Phosphate Dehydrogenation":
-    st.title("Phosphate Dehydrogenation")
-    st.warning("Coming soon!")
+elif pathway == "2️⃣ Phosphate Dehydrogenation":
+    st.title("Phosphate Dehydrogenation (Coming Soon)")
+    st.info("🚧 Module under construction.")
 
-elif selected_pathway == "Krebs Cycle":
-    st.title("Krebs Cycle")
-    st.warning("Coming soon!")
+elif pathway == "3️⃣ Krebs Cycle":
+    st.title("Krebs Cycle (Coming Soon)")
+    st.info("🚧 Module under construction.")
 
-elif selected_pathway == "Electron Transport Chain":
-    st.title("Electron Transport Chain")
-    st.warning("Coming soon!")
-
-else:
-    st.title("🧬 Welcome to PathwayPix")
-
-    st.markdown("""
-Biochemistry is usually taught as a list of things to memorize: pathways, enzymes, cofactors, and control steps. But for me, it was never about memorization.
-
-I’ve always been in love with organic chemistry. And one day it just clicked—biochemistry is organic chemistry in motion. It's not random, it's not arbitrary. Carbon atoms are reacting, adapting, and creating logic with every step. That’s when I stopped seeing it as content to study and started seeing it as a system to understand.
-
-Textbooks don’t help with that. They show you what happens, but not why it happens. They flatten the story into static diagrams and bullet points. So I made this.
-
-PathwayPix is for anyone who wants to see biochemistry as a logical, visual, moving system. Where structure changes make sense. Where enzymes don’t just do things—they have reasons.
-
----
-
-### Why I Made This
-
-I want people to see what's really going on.
-
-Instead of flipping flashcards, you’ll be tracing reaction paths. You'll see how glucose gets trapped inside a cell, how a phosphate group sets up a molecular ambush, how ATP investment pays off downstream.
-
-And most importantly, you’ll learn the why behind every shift. Why isomerization happens before cleavage. Why regulation hits that step and not the next one. Why the same carbon framework flows one way in a fed state and the opposite way in a fasted state.
-
----
-
-### Design Philosophy
-
-Every isomerization has a reason. It’s not a coincidence. It’s chemistry working for strategy—whether it’s about making a bond breakable, setting up redox, or preparing symmetry.
-
-Regulation tells a story. It’s not just “this step is inhibited.” It’s about commitment points, metabolic pressure, and the system adapting to context. The story of glycolysis changes depending on insulin, glucagon, or ATP levels. That’s what makes it fascinating.
-
----
-
-### What You’ll Get Out of This
-
-You’ll stop memorizing.
-You’ll start understanding.
-
-You’ll begin to see pathways not as walls of facts, but as beautifully engineered systems—where carbon, electrons, and enzymes are just doing what they do best.
-
-Let carbon do its thing. You’ll see.
-""")
+elif pathway == "4️⃣ Electron Transport Chain":
+    st.title("Electron Transport Chain (Coming Soon)")
+    st.info("🚧 Module under construction.")
 
