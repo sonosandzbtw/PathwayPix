@@ -18,12 +18,12 @@ st.markdown("""
         }
 
         [data-testid="stAppViewContainer"] {
-            background-color: #020030 !important;
+            background-color: #020125 !important;
         }
 
         [data-testid="stAppViewBlockContainer"] {
             padding: 2rem 3rem;
-            background-color: #020030 !important;
+            background-color: #020125 !important;
             color: #E3E9F0;
         }
 
@@ -44,7 +44,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # === Sidebar content ===
-st.sidebar.markdown("## 🧬 PathwayPix")
+st.sidebar.markdown('<a class="custom-link" href="/" target="_self">🧬 PathwayPix</a>', unsafe_allow_html=True)
 
 st.sidebar.markdown("#### Pathways")
 
@@ -87,4 +87,5 @@ elif pathway == "3️⃣ Krebs Cycle":
 elif pathway == "4️⃣ Electron Transport Chain":
     st.title("Electron Transport Chain (Coming Soon)")
     st.info("🚧 Module under construction.")
+
 
